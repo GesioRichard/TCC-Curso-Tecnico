@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1> Cadastrar Aluno</h1>
+<form name="form1" method="post" action="/Aluno/Cadastro">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="nome">Primeiro Nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Nome" required/>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" required/>
+        </div>
+        <div>
+            <label for="cpf"> CPF </label>
+            <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF" required />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label for="tipo">Tipo de Cadastro</label>
+            <input type="radio" name="tipo" id="tipo" value="A" required /> Aluno
+            <input type="radio" name="tipo" id="tipo" value="F" required /> Funcionário
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email" placeholder="Informe seu Email" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="telefone">TELEFONE</label>
+            <input type="text" name="telefone" id="telefone" placeholder="Informe seu Telefone" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="status">STATUS</label>
+            <input type="radio" name="status" id="status" value="A" required /> Ativo
+            <input type="radio" name="status" id="status" value="I" required /> Inativo
+        </div>
+        
+    </div>
+    <div id="form-Aluno" class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="matricula">MATRÍCULA</label>
+            <input type="text" name="matricula" id="matricula" placeholder="Informe sua Matrícula" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <select name="turma">
+                <option value="#"> Turma tal</option>
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="ano">ANO</label>
+            <input type="text" name="ano" id="ano" placeholder="Informe seu Ano atual" required />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="curso_tecnico">CURSO TÉCNICO</label>
+            <input type="text" name="cursoTecnico" id="cursoTecnico" placeholder="Informe seu Curso" required />
+        </div>
+    </div>
+    <div id="form-Funcionario" class="form-row">
+        <div class="col-md-3 mb-3">
+            <label for="instituição">Instituição</label>
+            <input type="radio" name="instituição" id="instituição" value="sesi" required /> SESI
+            <input type="radio" name="instituição" id="instituição" value="senai" required /> SENAI
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="cargo">CARGO</label>
+            <input type="text" name="cargo" id="cargo" placeholder="Informe seu Cargo" required />
+        </div>
+    </div>
+    <label for="senha">SENHA</label>
+    <input type="password" name="senha" id="senha" placeholder="Informe sua senha" required />
+    <button type="submit"> Enviar </button>
+    
+</form>

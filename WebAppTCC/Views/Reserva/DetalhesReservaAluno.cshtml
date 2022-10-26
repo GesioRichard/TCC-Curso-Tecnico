@@ -1,0 +1,65 @@
+﻿@model WebAppTCC.Models.reserva
+
+@{
+    ViewBag.Title = "Detalhe Reserva";
+}
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Detalhes Reserva</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+<br />
+
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divreserva">
+
+        <form name="form1" action="" method="post">
+            <div class="form-group">
+                <label>Funcionário que abriu a Reserva: </label>
+                <label> @Model.funcionario.pessoa.Nome</label>
+            </div>
+            <div class="form-group">
+                <label>DESCRIÇÃO: </label>
+                <label> @Model.DescricaoReserva</label>
+            </div>
+            <div class="form-group">
+                <label>Turma da Reserva: </label>
+                <label> @Model.turma.DescricaoTurma</label>
+            </div>
+            <div class="form-group">
+                <label>Data de Abertura: </label>
+                <label> @Model.DTCadReserva</label>
+            </div>
+            <div class="form-group">
+                <label>Status da Reserva: </label>
+                <label> @Model.StatusReserva</label>
+            </div>
+            <div class="form-group">
+                <label>Cardápio da Reserva: </label>
+                <label> @Model.cardapio.Porcao1 , @Model.cardapio.Porcao2</label>
+
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Status de solicitacão</label>
+                <label type="text" name="matsesi" class="form-control" aria-describedby="emailHelp"> almoço reservado </label>
+            </div>
+
+            <a href="/Cardapio/DetalhesCardapioAluno?id=@Model.idReserva" class="btn btn-info"> Detalhes do Cardápio</a>
+
+        </form>
+
+
+
+    </div>
+
+</div><a href="/Reserva/ListarReservaAluno"> <button type="button" class="btn btn-info">VOLTAR</button></a>

@@ -1,0 +1,71 @@
+﻿@using WebAppTCC.Models
+
+@{
+    ViewBag.Title = "Pagina Inicial";
+}
+
+@{
+
+    var user = (aluno)Session["loginAluno"];
+
+}
+
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>SEJA BEM-VINDO, @user.pessoa.Nome @user.pessoa.Sobrenome</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+<div class="paginafuncionariousuario">
+
+
+    <br />
+    <div class="card-deck" id="containercards2">
+        <a href="/Aluno/MinhasReservas?id=@user.Pessoa_idPessoa">
+            <div class="caixacard">
+                <div class="thumb1">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="textocard">MINHAS RESERVAS</h5>
+                    <p></p>
+                </div>
+
+            </div>
+        </a>
+        <a href="/Reserva/ListarReservaAluno">
+            <div class="caixacard">
+                <div class="thumb1">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="textocard">LISTA DE RESERVA</h5>
+                    <p></p>
+                </div>
+
+
+            </div>
+        </a>
+
+        <a href="/Aluno/PerfilAluno?id=@user.Pessoa_idPessoa" >
+            <div class="caixacard">
+                <div class="thumb1">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="textocard">Perfil do Aluno</h5>
+                    <p></p>
+                </div>
+
+
+            </div>
+        </a>
+    </div>
+
+</div>
+
+
+

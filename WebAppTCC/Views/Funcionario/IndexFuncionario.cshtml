@@ -1,0 +1,91 @@
+﻿@using WebAppTCC.Models
+
+@{
+    ViewBag.Title = "Pagina Inicial";
+}
+
+@{
+
+    var user = (funcionario)Session["loginFuncionario"];
+
+}
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudofuncionario">
+        <h2>SEJA BEM-VINDO, @user.pessoa.Nome @user.pessoa.Sobrenome</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+
+<div class="paginafuncionariousuario5telas">
+
+
+    <br />
+    <div class="card-deck" id="containercards">
+
+        <a href="/Funcionario/CadastroFuncionario">
+            <div class="caixacard">
+                <div class="thumb1">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="textocard">CADASTRAR FUNCIONÁRIO</h5>
+                    <p></p>
+                </div>
+
+            </div>
+        </a>
+
+        <a href=" /Reserva/CadastroReserva">
+            <div class="caixacard">
+                <div class="thumb1">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="textocard">CADASTRAR RESERVA</h5>
+                    <p></p>
+                </div>
+
+            </div>
+        </a>
+        <a href="/Reserva/ListarReserva">
+            <div class="caixacard">
+                <div class="thumb1">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="textocard">LISTA DE RESERVA</h5>
+                    <p></p>
+                </div>
+
+            </div>
+        </a>
+        <a href="/Reserva/HistoricoReserva">
+            <div class="caixacard">
+                <div class="thumb1">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="textocard"> HISTORICO RESERVAS   </h5>
+                    <p></p>
+                </div>
+
+            </div>
+        </a>
+        <a href="/Funcionario/PerfilFuncionario?id=@user.Pessoa_idPessoa">
+            <div class="caixacard">
+                <div class="thumb1">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="textocard"> PERFIL</h5>
+                    <p></p>
+                </div>
+
+            </div>
+        </a>
+
+    </div>
+
+</div>

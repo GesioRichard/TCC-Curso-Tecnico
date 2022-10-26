@@ -1,0 +1,85 @@
+﻿@model WebAppTCC.Classes.AlunoReserva
+
+@{
+    ViewBag.Title = "Listar Reserva";
+}
+
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Lista de Reservas para Turma de @Model.alunoDados.turma.DescricaoTurma</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+
+<br />
+
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divreserva">
+
+        <table class="table" id="deixartabletransparente">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Data da abertura da Reserva</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var aluReser in Model.reservas)
+                {
+                    if ((aluReser.StatusReserva == "A") && (Model.alunoDados.idTurma == aluReser.idTurma))
+                    {
+                        var achou = false;
+                        <tr>
+                            <td>@aluReser.DescricaoReserva</td>
+                            <td>@aluReser.DTCadReserva</td>
+                            <td>
+                                <a href="/Reserva/DetalhesReservaAluno?id=@aluReser.idReserva" class="btn btn-info"> DETALHE</a>
+                                @foreach (var idAluConf in Model.confirRe)
+                                {
+                                    if ((Model.alunoDados.Pessoa_idPessoa == idAluConf.Aluno_Pessoa_idPessoa) && (aluReser.idReserva == idAluConf.idReserva))
+                                    {
+                                        achou = true;
+
+                                        break;
+                                    }
+                                    else
+                                    {
+
+
+                                    }
+                                }
+
+                                @if (achou == true)
+                                {
+                                    <p> PRESENÇA CONFIRMADA</p>
+                                }
+                                else
+                                {
+                                    <a href="/Reserva/ConfirmaReserva?id=@aluReser.idReserva" class="btn btn-info"> CONFIRMAR PRESENÇA</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+
+
+
+
+
+    </div>
+</div>
+<a href="/Aluno/IndexAluno" class="btn btn-info"> VOLTAR </a>
+
+
+
+

@@ -1,0 +1,117 @@
+﻿@Model WebAppTCC.Models.turma
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1> Cadastro </h1>
+
+<form name="form1" method="post" action="/Pessoa/CadastroPessoa">
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="nome">Primeiro Nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Nome" required />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" required />
+        </div>
+        <div>
+            <label for="cpf"> CPF </label>
+            <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF" required />
+        </div>
+    </div>
+    <br /><br />
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label for="tipo">Tipo de Cadastro</label>
+            <br />
+            <input type="radio" class="tipo" name="tipo" id="tipoA" value="A" onclick="alteraForm()" required /> Aluno
+            <input type="radio" class="tipo" name="tipo" id="tipoF" value="F" onclick="alteraForm()" required /> Funcionário
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email" placeholder="Informe seu Email" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="telefone">TELEFONE</label>
+            <input type="text" name="telefone" id="telefone" placeholder="Informe seu Telefone" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="status">STATUS</label>
+            <input type="radio" name="status" id="statusA" value="A" required /> Ativo
+            <input type="radio" name="status" id="statusI" value="I" required /> Inativo
+        </div>
+    </div>
+    <br /><br />
+    <div id="form-Aluno" class="form-row" style="display:none;">
+        <div class="col-md-6 mb-3">
+            <label for="matricula">MATRÍCULA SESI</label>
+            <input type="text" name="matriculaSesi" id="matriculaSesi" placeholder="Informe sua Matrícula do Sesi" required />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="matricula">MATRÍCULA SENAI</label>
+            <input type="text" name="matriculaSenai" id="matriculaSenai" placeholder="Informe sua Matrícula do Senai" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="turma"> TURMA </label>
+            <select name="turma">
+                @foreach (var tur in Model)
+                {
+                    <option value="@tur.idTurma"> @tur.descricaoTurma </option>
+                }
+            </select>
+        </div>
+    </div>
+    <br /><br />
+    <div id="form-Funcionario" class="form-row" style="display:none;">
+        <div class="col-md-3 mb-3">
+            <label for="instituição">Instituição</label>
+            <input type="radio" name="instituição" id="instituiçãoSesi" value="sesi" required /> SESI
+            <input type="radio" name="instituição" id="instituiçãoSenai" value="senai" required /> SENAI
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="cargo">CARGO</label>
+            <input type="text" name="cargo" id="cargo" placeholder="Informe seu Cargo" required />
+        </div>
+    </div>
+    <br /><br />
+    <label for="senha">SENHA</label>
+    <input type="password" name="senha" id="senha" placeholder="Informe sua senha" required />
+
+    <button type="submit"> Enviar</button>
+</form>
+
+<!--
+<script>
+
+    function alteraForm() {
+        var radios = document.getElementsByName("tipo");
+        var formAlu = document.getElementById("form-Aluno");
+        var formFunc = document.getElementById("form-Funcionario");
+        var instituicao = document.getElementsByName("instituição");
+        var cargo = document.getElementById("cargo");
+
+
+        //alert(radios[0].value);
+        //alert(radios[1].value);
+
+        for (var i = 0; i < radios.length; i++) {
+            if ((radios[i].checked) && (radios[i].value == "A")) {
+                formAlu.style.display = "block";
+                formFunc.style.display = "none";
+            } else if ((radios[i].checked) && (radios[i].value == "F")) {
+                formAlu.style.display = "none";
+                formFunc.style.display = "block";
+            } else {
+                //formAlu.style.display = "none";
+                //formFunc.style.display = "none";
+            }
+        }
+
+
+    }
+
+</script>
+    -->

@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1> Cadastrar Funcionario</h1>
+<form name="form1" method="post" action="/Funcionario/Cadastro">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="nome">Primeiro Nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Nome" required/>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" required/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="matricula">MATRÍCULA</label>
+            <input type="text" name="matricula" id="matricula" placeholder="Informe sua Matrícula" required/>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="cargo">CARGO</label>
+            <input type="text" name="cargo" id="cargo" placeholder="Informe seu Cargo" required/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email" placeholder="Informe seu Email" required />
+        </div>
+    </div>
+    <label for="senha">SENHA</label>
+    <input type="password" name="senha" id="senha" placeholder="Informe sua senha" required />
+    <button type="submit"> Enviar </button>
+    
+</form>

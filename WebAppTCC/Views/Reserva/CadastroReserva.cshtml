@@ -1,0 +1,77 @@
+﻿@model WebAppTCC.Classes.FuncionarioReserva
+
+@{
+    ViewBag.Title = "Cadastrar Reserva";
+}
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Cadastrar Reserva</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+<br />
+
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divreservafuncionario">
+
+
+        <form name="form-Reserva" method="post" action="/Reserva/CadastroReserva">
+
+
+            <label for="data">Descrição da Reserva: </label>
+            <input type="text" name="descricaoReserva" id="descricaoReserva" required />
+
+            <br />
+
+            <label for="funcionario">Funcionário: </label>
+            <input type="hidden" name="funcionario" value="@Model.funcionarioDados.Pessoa_idPessoa " />
+
+            @Model.funcionarioDados.pessoa.Nome
+
+           <br /><br />
+            <label for="turma">Qual Turma vai Participar da Reserva?</label>
+            <br />
+            <select name="turma">
+                @foreach (var tur in Model.turmas)
+                {
+                    <option value="@tur.idTurma"> @tur.DescricaoTurma </option>
+                }
+            </select>
+            <br /><br />
+            <div>
+                <br />
+                <label for="cardapio"> Cardápio da Reserva </label>
+                <br />
+                <select name="cardapio" id="selectcardapio" >
+                    @foreach (var card in Model.cardapios)
+                    {
+                        <option value="@card.idCardapio"> @card.Porcao1, @card.Porcao2, @card.Acompanhamento1  </option>
+                    }
+                </select>
+            </div>
+            <br /><br />
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="status"> Status da Reserva</label> <br />
+                    <input type="radio" name="status" id="statusReservaA" value="A" required /> Ativo <br />
+                    <input type="radio" name="status" id="statusReservaI" value="I" required /> Inativo
+                </div>
+            </div>
+            <br />
+
+            <button type="submit"> Efetuar Reserva</button>
+        </form>
+
+
+
+
+
+
+    </div>
+
+</div><a href="/Funcionario/IndexFuncionario"> <button type="button" class="btn btn-primary btn-sm">VOLTAR</button></a>

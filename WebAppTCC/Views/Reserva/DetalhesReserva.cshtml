@@ -1,0 +1,88 @@
+﻿@model WebAppTCC.Classes.ConfirmacaoReserva
+@{
+    ViewBag.Title = "Detalhe Reserva";
+}
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Detalhes Reserva</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+<div id="paginadetalhereserva">
+    <div id="divreserva">
+
+        <div id="divdetalhereservassss">
+
+
+            <div class="col-lg-12">
+                <h2>Funcionário que abriu a Reserva:</h2>
+                <p class="boxreservascaixas"> @Model.reservaDados.funcionario.pessoa.Nome</p>
+            </div>
+            <div class="col-lg-12">
+                <h2>DESCRIÇÃO:</h2>
+                <p class="boxreservascaixas"> @Model.reservaDados.DescricaoReserva</p>
+            </div>
+            <div class="col-lg-12">
+                <h2>Turma da Reserva:</h2>
+                <p class="boxreservascaixas"> @Model.reservaDados.turma.DescricaoTurma</p>
+            </div>
+            <div class="col-lg-12">
+                <h2>Data de Abertura:</h2>
+                <p class="boxreservascaixas"> @Model.reservaDados.DTCadReserva</p>
+            </div>
+            <div class="col-lg-12">
+                <h2>Status da Reserva:</h2>
+                <p class="boxreservascaixas"> @Model.reservaDados.StatusReserva</p>
+            </div>
+            <div class="col-lg-12">
+                <h2>Cardápio:</h2>
+                <p class="boxreservascaixas"> @Model.reservaDados.cardapio.Porcao1 , @Model.reservaDados.cardapio.Porcao2</p>
+                <a href="/Cardapio/DetalhesCardapio?id=@Model.reservaDados.idReserva" class="btn btn-info"> Detalhes do Cardápio</a>
+            </div>
+            <br />
+
+        </div>
+
+       
+        <br />
+</div>
+    <div id="divreserva">
+    <br />
+   
+            <table class="table table" id="divdetalhereservabox">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome do Aluno</th>
+                        <th scope="col">Turma do Aluno</th>
+                        <th scope="col">Presença do Aluno no Dia</th>
+                        <th scope="col">Confirmar o Aluno</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var conf in Model.confirmareservas)
+                    {
+                        if ((Model.reservaDados.idTurma == conf.aluno.idTurma) && (Model.reservaDados.idReserva == conf.idReserva))
+                        {
+                            <tr>
+                                <td>@conf.aluno.pessoa.Nome</td>
+                                <td>@conf.aluno.turma.DescricaoTurma</td>
+                                <td>@conf.ConfPresente</td>
+                                @if (conf.ConfPresente == "N")
+                                {
+                                    <td> <a href="/Reserva/ConfirmarAluno?id=@conf.idConfirmaReserva" class="btn btn-info"> CONFIRMAR </a> </td>
+                                }
+                                else
+                                {
+                                    <td> CONFIRMADO</td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+ </div>
+    <a href="/Reserva/ListarReserva" class="btn btn-info"> VOLTAR</a>

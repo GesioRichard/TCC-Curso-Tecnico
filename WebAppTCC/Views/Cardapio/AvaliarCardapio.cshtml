@@ -1,0 +1,44 @@
+﻿@model WebAppTCC.Models.confirmareserva
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Avaliar Cardápio</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+<div id="paginareserva">
+    <br />
+    <div id="divavaliar">
+        <h2> De uma nota para o almoço</h2>
+        <form name="ava-Card" action="/Cardapio/AvaliarCardapio" method="post">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+            <input type="hidden" name="alunoID" id="alunoID" value="@Model.Aluno_Pessoa_idPessoa" />
+            <input type="hidden" name="confiReservaID" id="confiReservaID" value="@Model.idConfirmaReserva" />
+
+            <div class="estrelas">
+                <label for="cm_star-1"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-1" name="nota" value="1" />
+                <label for="cm_star-2"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-2" name="nota" value="2" />
+                <label for="cm_star-3"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-3" name="nota" value="3" />
+                <label for="cm_star-4"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-4" name="nota" value="4" />
+                <label for="cm_star-5"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-5" name="nota" value="5" checked />
+            </div>
+            <br />
+            <label for="observacao"> Observação </label>
+            <input type="text" name="observacao" id="observacao" maxlength="150" placeholder="escreva aqui!" />
+
+            <button type="submit"> Enviar Avaliação</button>
+        </form>
+    </div>
+
+</div> <a href="/Aluno/MinhasReservas?id=@Model.Aluno_Pessoa_idPessoa" type="button" class="btn btn-primary btn-sm">VOLTAR</a>

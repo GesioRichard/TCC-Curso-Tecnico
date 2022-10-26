@@ -1,0 +1,90 @@
+﻿@model WebAppTCC.Models.funcionario
+
+@{
+    ViewBag.Title = "Perfil";
+}
+
+
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Perfil do Usuário</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+<br />
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divperfilfil">
+        <br />
+        <section>
+            <br />
+            <div class="row">
+
+                <div>
+                    <div class="card mb-1">
+                        <div class="card-body">
+                            <div class="double">
+
+                                <p class="mb-0">Nome:</p>
+
+
+                                <p id="espacinho"> @Model.pessoa.Nome </p>
+
+                            </div>
+
+                            <div>
+                                <p class="mb-0">Sobrenome:</p>
+
+                                <p id="espacinho">@Model.pessoa.Sobrenome</p>
+
+                            </div>
+
+                            <div>
+
+                                <p class="mb-0">Gmail</p>
+
+
+                                <p id="espacinho">@Model.pessoa.Email</p>
+
+                            </div>
+
+                            <div>
+
+                                <p class="mb-0">Telefone:</p>
+
+                                <p id="espacinho">@Model.pessoa.Telefone</p>
+
+                            </div>
+
+                            <div>
+
+                                <p class="mb-0">Cargo</p>
+
+                                <p id="espacinho">@Model.cargo.DescricaoCargo</p>
+
+                            </div>
+
+                            <div>
+
+                                <p class="mb-0">Instituição</p>
+
+                                <p id="espacinho">@Model.Instituicao</p>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<a href="/Funcionario/IndexFuncionario" class="btn btn-info"> VOLTAR </a>

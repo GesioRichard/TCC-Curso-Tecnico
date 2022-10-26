@@ -1,0 +1,109 @@
+﻿@model IEnumerable<WebAppTCC.Models.turma>
+
+
+@{
+    ViewBag.Title = "Cadastro Aluno";
+}
+
+<br />
+<div id="pagina">
+
+
+
+    <br />
+    <div id="containercadastro">
+
+
+
+
+
+        <div id="divcadastro">
+
+            <form name="form1" method="post" action="/Aluno/CadastroAluno">
+                <div class="form-group">
+                    <label for="nome">Primeiro Nome</label>
+                    <input type="text" class="form-control" aria-describedby="emailHelp" name="nome" id="nome" placeholder="Nome" maxlength="15" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" maxlength="30" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf"> CPF </label>
+                    <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF" maxlength="11" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="email" name="email" id="email" placeholder="Informe seu Email" maxlength="60" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">TELEFONE</label>
+                    <input type="text" name="telefone" id="telefone" placeholder="Informe seu Telefone" maxlength="11" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="senha">SENHA</label>
+                    <input type="password" name="senha" id="senha" placeholder="Informe sua senha" maxlength="6" class="form-control" aria-describedby="emailHelp" required />
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="matricula">MATRÍCULA SESI</label>
+                    <input type="text" name="matriculaSesi" id="matriculaSesi" placeholder="Informe sua Matrícula do Sesi" class="form-control" aria-describedby="emailHelp" required />
+
+
+                </div>
+                <div class="form-group">
+                    <label for="matricula">MATRÍCULA SENAI</label>
+                    <input type="text" name="matriculaSenai" id="matriculaSenai" placeholder="Informe sua Matrícula do Senai" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+                <div class="form-group">
+                    <label for="turma"> TURMA </label> <br />
+                    <select name="turma">
+                        @foreach (var tur in Model)
+                        {
+                            <option value="@tur.idTurma"> @tur.DescricaoTurma </option>
+                        }
+                    </select>
+                </div>
+
+
+
+                <div>
+
+                    <button type="submit" class="btn btn-info"> Enviar</button>
+
+                   
+
+
+                </div>
+
+                <div id="atributosformularioinvisivel" class="sr-only">
+
+                    <div class="form-check">
+                        <label for="tipo">Tipo de Cadastro</label>
+
+                        <input type="radio" class="tipo" name="tipo" id="tipoA" value="A" checked required /> Aluno <br />
+                        <input type="radio" class="tipo" name="tipo" id="tipoF" value="F" required /> Funcionário
+                    </div>
+                    <div class="form-group">
+                        <label for="status">STATUS</label> <br />
+                        <input type="radio" name="status" id="statusA" value="A" checked required /> Ativo <br />
+                        <input type="radio" name="status" id="statusI" value="I" required /> Inativo
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+<a href="/Home/Login"> <button type="button" class="btn btn-info">VOLTAR</button></a>

@@ -1,0 +1,42 @@
+﻿@model WebAppTCC.Models.avaliacao
+
+@{
+    ViewBag.Title = "Detalhe Reserva";
+}
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Avaliação do Usuário</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+<br />
+
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divreserva">
+
+        <form name="form1" action="" method="post">
+            <div class="form-group">
+                <label>Usuário que Avaliou a Reserva: </label>
+                <label> @Model.confirmareserva.aluno.pessoa.Nome @Model.confirmareserva.aluno.pessoa.Sobrenome</label>
+            </div>
+            <div class="form-group">
+                <label>NOTA: </label>
+                <label> @Model.Nota</label>
+            </div>
+            <div class="form-group">
+                <label>Comentário do Aluno: </label>
+                <label> @Model.Observacao</label>
+            </div>
+        </form>
+
+
+
+    </div>
+
+</div><a href="/Reserva/AlunosReserva?id=@Model.confirmareserva.idReserva" class="btn btn-info"> VOLTAR</a>

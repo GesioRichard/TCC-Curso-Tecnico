@@ -1,0 +1,88 @@
+﻿@model WebAppTCC.Classes.ConfirmacaoReserva
+
+@{
+    ViewBag.Title = "Reservas Aluno";
+}
+
+
+
+
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Reserva aluno</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+
+
+<br />
+
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divreserva">
+
+        <table class="table table" id="deixartabletransparente">
+            <thead>
+                <tr>
+                    <th class="threserva" scope="col">Nome do Aluno</th>
+                    <th class="threserva" scope="col">Sobrenome</th>
+                    <th class="threserva" scope="col">Turma do Aluno</th>
+                    <th class="threserva" scope="col">Presença do Aluno no Dia</th>
+                    <th class="threserva" scope="col">Ver Avaliação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var conf in Model.confirmareservas)
+                {
+                    if ((Model.reservaDados.idTurma == conf.aluno.idTurma) && (Model.reservaDados.idReserva == conf.idReserva))
+                    {
+                        var achou = false;
+                        var idAvaAlu = 0;
+                        <tr>
+                            <td class="conteudoreserva">@conf.aluno.pessoa.Nome</td>
+                            <td class="conteudoreserva">@conf.aluno.pessoa.Sobrenome </td>
+                            <td class="conteudoreserva">@conf.aluno.turma.DescricaoTurma</td>
+                            <td class="conteudoreserva">@conf.ConfPresente</td>
+                            <td>
+                                @foreach (var avaAlu in Model.avaliacaoAluno)
+                                {
+                                    if ((conf.Aluno_Pessoa_idPessoa == avaAlu.ConfirmaReserva_Aluno_Pessoa_idPessoa) && (conf.idConfirmaReserva == avaAlu.ConfirmaReserva_idConfirmaReserva))
+                                    {
+                                        achou = true;
+                                        
+                                        idAvaAlu = avaAlu.idAvaliacao;
+
+                                        break;
+                                    }
+                                }
+
+                                @if (achou == true)
+                                {
+
+                                    <a href="/Reserva/AvaliacaoAlunoReserva?id=@idAvaAlu" class="btn btn-info"> Ver Avaliação</a>
+                                }
+                                else
+                                {
+                                    <p> O aluno não Avaliou</p>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+
+
+
+
+
+    </div>
+</div>
+<a href="/Reserva/HistoricoReserva" class="btn btn-info"> VOLTAR </a>

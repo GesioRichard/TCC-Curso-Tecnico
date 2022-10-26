@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+
+@Model WebAppTCC.Models.turma
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1> Cadastro </h1>
+
+<form name="form1" method="post" action="/Aluno/CadastroAluno">
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="nome">Primeiro Nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Nome" maxlength="15" required />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" maxlength="30" required />
+        </div>
+        <div>
+            <label for="cpf"> CPF </label>
+            <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF" maxlength="11" required />
+        </div>
+    </div>
+    <br /><br />
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label for="tipo">Tipo de Cadastro</label>
+            <br />
+            <input type="radio" class="tipo" name="tipo" id="tipoA" value="A" required /> Aluno
+            <input type="radio" class="tipo" name="tipo" id="tipoF" value="F" required /> Funcionário
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email" placeholder="Informe seu Email" maxlength="60" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="telefone">TELEFONE</label>
+            <input type="text" name="telefone" id="telefone" placeholder="Informe seu Telefone" maxlength="11" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="status">STATUS</label>
+            <input type="radio" name="status" id="statusA" value="A" required /> Ativo
+            <input type="radio" name="status" id="statusI" value="I" required /> Inativo
+        </div>
+    </div>
+    <br /><br />
+    <div id="form-Aluno" class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="matricula">MATRÍCULA SESI</label>
+            <input type="text" name="matriculaSesi" id="matriculaSesi" placeholder="Informe sua Matrícula do Sesi" required />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="matricula">MATRÍCULA SENAI</label>
+            <input type="text" name="matriculaSenai" id="matriculaSenai" placeholder="Informe sua Matrícula do Senai" required />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="turma"> TURMA </label>
+            <select name="turma">
+                @foreach (var tur in Model)
+                {
+                    <option value="@tur.idTurma"> @tur.DescricaoTurma </option>
+                }
+            </select>
+        </div>
+    </div>
+    <br />
+    <label for="senha">SENHA</label>
+    <input type="password" name="senha" id="senha" placeholder="Informe sua senha" maxlength="6" required />
+
+    <button type="submit"> Enviar</button>
+</form>

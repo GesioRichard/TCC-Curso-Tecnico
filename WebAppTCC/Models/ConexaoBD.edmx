@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BD_S.O.P.A.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aluno">
+          <Key>
+            <PropertyRef Name="Pessoa_idPessoa" />
+          </Key>
+          <Property Name="Pessoa_idPessoa" Type="int" Nullable="false" />
+          <Property Name="idTurma" Type="int" Nullable="false" />
+          <Property Name="MatSESI" Type="int" Nullable="false" />
+          <Property Name="MatSENAI" Type="int" />
+        </EntityType>
+        <EntityType Name="avaliacao">
+          <Key>
+            <PropertyRef Name="idAvaliacao" />
+          </Key>
+          <Property Name="idAvaliacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfirmaReserva_Aluno_Pessoa_idPessoa" Type="int" Nullable="false" />
+          <Property Name="ConfirmaReserva_idConfirmaReserva" Type="int" Nullable="false" />
+          <Property Name="Nota" Type="int" Nullable="false" />
+          <Property Name="Observacao" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="cardapio">
+          <Key>
+            <PropertyRef Name="idCardapio" />
+          </Key>
+          <Property Name="idCardapio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Porcao1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Porcao2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Acompanhamento1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Acompanhamento2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Acompanhamento3" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Suco" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cargo">
+          <Key>
+            <PropertyRef Name="idCargo" />
+          </Key>
+          <Property Name="idCargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescricaoCargo" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="confirmareserva">
+          <Key>
+            <PropertyRef Name="idConfirmaReserva" />
+            <PropertyRef Name="Aluno_Pessoa_idPessoa" />
+          </Key>
+          <Property Name="idConfirmaReserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Aluno_Pessoa_idPessoa" Type="int" Nullable="false" />
+          <Property Name="idReserva" Type="int" Nullable="false" />
+          <Property Name="DTConfReserva" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ConfPresente" Type="nchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="funcionario">
+          <Key>
+            <PropertyRef Name="Pessoa_idPessoa" />
+          </Key>
+          <Property Name="Pessoa_idPessoa" Type="int" Nullable="false" />
+          <Property Name="idCargo" Type="int" Nullable="false" />
+          <Property Name="Instituicao" Type="nchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="pessoa">
+          <Key>
+            <PropertyRef Name="idPessoa" />
+          </Key>
+          <Property Name="idPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Sobrenome" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CPF" Type="bigint" Nullable="false" />
+          <Property Name="TipoPessoa" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Telefone" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="Senha" Type="nvarchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="idReserva" />
+          </Key>
+          <Property Name="idReserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Funcionario_Pessoa_idPessoa" Type="int" Nullable="false" />
+          <Property Name="idcardapio" Type="int" Nullable="false" />
+          <Property Name="idTurma" Type="int" Nullable="false" />
+          <Property Name="DTCadReserva" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="StatusReserva" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="DescricaoReserva" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="turma">
+          <Key>
+            <PropertyRef Name="idTurma" />
+          </Key>
+          <Property Name="idTurma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoTurma" Type="int" Nullable="false" />
+          <Property Name="DescricaoTurma" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Sigla" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="DiasSemana" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <Association Name="aluno$fk_Aluno_Turma1">
+          <End Role="turma" Type="Self.turma" Multiplicity="1" />
+          <End Role="aluno" Type="Self.aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="turma">
+              <PropertyRef Name="idTurma" />
+            </Principal>
+            <Dependent Role="aluno">
+              <PropertyRef Name="idTurma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aluno$fk_table1_Pessoa1">
+          <End Role="pessoa" Type="Self.pessoa" Multiplicity="1" />
+          <End Role="aluno" Type="Self.aluno" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pessoa">
+              <PropertyRef Name="idPessoa" />
+            </Principal>
+            <Dependent Role="aluno">
+              <PropertyRef Name="Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="avaliacao$fk_Avaliacao_ConfirmaReserva1">
+          <End Role="confirmareserva" Type="Self.confirmareserva" Multiplicity="1" />
+          <End Role="avaliacao" Type="Self.avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="confirmareserva">
+              <PropertyRef Name="idConfirmaReserva" />
+              <PropertyRef Name="Aluno_Pessoa_idPessoa" />
+            </Principal>
+            <Dependent Role="avaliacao">
+              <PropertyRef Name="ConfirmaReserva_idConfirmaReserva" />
+              <PropertyRef Name="ConfirmaReserva_Aluno_Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="confirmareserva$fk_ConfirmaReserva_Aluno1">
+          <End Role="aluno" Type="Self.aluno" Multiplicity="1" />
+          <End Role="confirmareserva" Type="Self.confirmareserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aluno">
+              <PropertyRef Name="Pessoa_idPessoa" />
+            </Principal>
+            <Dependent Role="confirmareserva">
+              <PropertyRef Name="Aluno_Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="confirmareserva$fk_ConfirmaReserva_Reserva1">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1" />
+          <End Role="confirmareserva" Type="Self.confirmareserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="idReserva" />
+            </Principal>
+            <Dependent Role="confirmareserva">
+              <PropertyRef Name="idReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="funcionario$fk_Funcionario_cargo1">
+          <End Role="cargo" Type="Self.cargo" Multiplicity="1" />
+          <End Role="funcionario" Type="Self.funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargo">
+              <PropertyRef Name="idCargo" />
+            </Principal>
+            <Dependent Role="funcionario">
+              <PropertyRef Name="idCargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="funcionario$fk_funcionario_Pessoa">
+          <End Role="pessoa" Type="Self.pessoa" Multiplicity="1" />
+          <End Role="funcionario" Type="Self.funcionario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pessoa">
+              <PropertyRef Name="idPessoa" />
+            </Principal>
+            <Dependent Role="funcionario">
+              <PropertyRef Name="Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva$fk_Reserva_cardapio1">
+          <End Role="cardapio" Type="Self.cardapio" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cardapio">
+              <PropertyRef Name="idCardapio" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="idcardapio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva$fk_Reserva_Funcionario1">
+          <End Role="funcionario" Type="Self.funcionario" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcionario">
+              <PropertyRef Name="Pessoa_idPessoa" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="Funcionario_Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva$fk_Reserva_Turma1">
+          <End Role="turma" Type="Self.turma" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="turma">
+              <PropertyRef Name="idTurma" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="idTurma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_SOPAModelStoreContainer">
+          <EntitySet Name="aluno" EntityType="Self.aluno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="avaliacao" EntityType="Self.avaliacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cardapio" EntityType="Self.cardapio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cargo" EntityType="Self.cargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="confirmareserva" EntityType="Self.confirmareserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="funcionario" EntityType="Self.funcionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pessoa" EntityType="Self.pessoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reserva" EntityType="Self.reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="turma" EntityType="Self.turma" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="aluno$fk_Aluno_Turma1" Association="Self.aluno$fk_Aluno_Turma1">
+            <End Role="turma" EntitySet="turma" />
+            <End Role="aluno" EntitySet="aluno" />
+          </AssociationSet>
+          <AssociationSet Name="aluno$fk_table1_Pessoa1" Association="Self.aluno$fk_table1_Pessoa1">
+            <End Role="pessoa" EntitySet="pessoa" />
+            <End Role="aluno" EntitySet="aluno" />
+          </AssociationSet>
+          <AssociationSet Name="avaliacao$fk_Avaliacao_ConfirmaReserva1" Association="Self.avaliacao$fk_Avaliacao_ConfirmaReserva1">
+            <End Role="confirmareserva" EntitySet="confirmareserva" />
+            <End Role="avaliacao" EntitySet="avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="confirmareserva$fk_ConfirmaReserva_Aluno1" Association="Self.confirmareserva$fk_ConfirmaReserva_Aluno1">
+            <End Role="aluno" EntitySet="aluno" />
+            <End Role="confirmareserva" EntitySet="confirmareserva" />
+          </AssociationSet>
+          <AssociationSet Name="confirmareserva$fk_ConfirmaReserva_Reserva1" Association="Self.confirmareserva$fk_ConfirmaReserva_Reserva1">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="confirmareserva" EntitySet="confirmareserva" />
+          </AssociationSet>
+          <AssociationSet Name="funcionario$fk_Funcionario_cargo1" Association="Self.funcionario$fk_Funcionario_cargo1">
+            <End Role="cargo" EntitySet="cargo" />
+            <End Role="funcionario" EntitySet="funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="funcionario$fk_funcionario_Pessoa" Association="Self.funcionario$fk_funcionario_Pessoa">
+            <End Role="pessoa" EntitySet="pessoa" />
+            <End Role="funcionario" EntitySet="funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="reserva$fk_Reserva_cardapio1" Association="Self.reserva$fk_Reserva_cardapio1">
+            <End Role="cardapio" EntitySet="cardapio" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="reserva$fk_Reserva_Funcionario1" Association="Self.reserva$fk_Reserva_Funcionario1">
+            <End Role="funcionario" EntitySet="funcionario" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="reserva$fk_Reserva_Turma1" Association="Self.reserva$fk_Reserva_Turma1">
+            <End Role="turma" EntitySet="turma" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_S.O.P.A.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="aluno">
+          <Key>
+            <PropertyRef Name="Pessoa_idPessoa" />
+          </Key>
+          <Property Name="Pessoa_idPessoa" Type="Int32" Nullable="false" />
+          <Property Name="idTurma" Type="Int32" Nullable="false" />
+          <Property Name="MatSESI" Type="Int32" Nullable="false" />
+          <Property Name="MatSENAI" Type="Int32" />
+          <NavigationProperty Name="turma" Relationship="Self.aluno_fk_Aluno_Turma1" FromRole="aluno" ToRole="turma" />
+          <NavigationProperty Name="pessoa" Relationship="Self.aluno_fk_table1_Pessoa1" FromRole="aluno" ToRole="pessoa" />
+          <NavigationProperty Name="confirmareserva" Relationship="Self.confirmareserva_fk_ConfirmaReserva_Aluno1" FromRole="aluno" ToRole="confirmareserva" />
+        </EntityType>
+        <EntityType Name="avaliacao">
+          <Key>
+            <PropertyRef Name="idAvaliacao" />
+          </Key>
+          <Property Name="idAvaliacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfirmaReserva_Aluno_Pessoa_idPessoa" Type="Int32" Nullable="false" />
+          <Property Name="ConfirmaReserva_idConfirmaReserva" Type="Int32" Nullable="false" />
+          <Property Name="Nota" Type="Int32" Nullable="false" />
+          <Property Name="Observacao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="confirmareserva" Relationship="Self.avaliacao_fk_Avaliacao_ConfirmaReserva1" FromRole="avaliacao" ToRole="confirmareserva" />
+        </EntityType>
+        <EntityType Name="cardapio">
+          <Key>
+            <PropertyRef Name="idCardapio" />
+          </Key>
+          <Property Name="idCardapio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Porcao1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Porcao2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Acompanhamento1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Acompanhamento2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Acompanhamento3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Suco" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="reserva" Relationship="Self.reserva_fk_Reserva_cardapio1" FromRole="cardapio" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="cargo">
+          <Key>
+            <PropertyRef Name="idCargo" />
+          </Key>
+          <Property Name="idCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescricaoCargo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="funcionario" Relationship="Self.funcionario_fk_Funcionario_cargo1" FromRole="cargo" ToRole="funcionario" />
+        </EntityType>
+        <EntityType Name="confirmareserva">
+          <Key>
+            <PropertyRef Name="idConfirmaReserva" />
+            <PropertyRef Name="Aluno_Pessoa_idPessoa" />
+          </Key>
+          <Property Name="idConfirmaReserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Aluno_Pessoa_idPessoa" Type="Int32" Nullable="false" />
+          <Property Name="idReserva" Type="Int32" Nullable="false" />
+          <Property Name="DTConfReserva" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConfPresente" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="aluno" Relationship="Self.confirmareserva_fk_ConfirmaReserva_Aluno1" FromRole="confirmareserva" ToRole="aluno" />
+          <NavigationProperty Name="avaliacao" Relationship="Self.avaliacao_fk_Avaliacao_ConfirmaReserva1" FromRole="confirmareserva" ToRole="avaliacao" />
+          <NavigationProperty Name="reserva" Relationship="Self.confirmareserva_fk_ConfirmaReserva_Reserva1" FromRole="confirmareserva" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="funcionario">
+          <Key>
+            <PropertyRef Name="Pessoa_idPessoa" />
+          </Key>
+          <Property Name="Pessoa_idPessoa" Type="Int32" Nullable="false" />
+          <Property Name="idCargo" Type="Int32" Nullable="false" />
+          <Property Name="Instituicao" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="cargo" Relationship="Self.funcionario_fk_Funcionario_cargo1" FromRole="funcionario" ToRole="cargo" />
+          <NavigationProperty Name="pessoa" Relationship="Self.funcionario_fk_funcionario_Pessoa" FromRole="funcionario" ToRole="pessoa" />
+          <NavigationProperty Name="reserva" Relationship="Self.reserva_fk_Reserva_Funcionario1" FromRole="funcionario" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="pessoa">
+          <Key>
+            <PropertyRef Name="idPessoa" />
+          </Key>
+          <Property Name="idPessoa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sobrenome" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CPF" Type="Int64" Nullable="false" />
+          <Property Name="TipoPessoa" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefone" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Senha" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="aluno" Relationship="Self.aluno_fk_table1_Pessoa1" FromRole="pessoa" ToRole="aluno" />
+          <NavigationProperty Name="funcionario" Relationship="Self.funcionario_fk_funcionario_Pessoa" FromRole="pessoa" ToRole="funcionario" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="idReserva" />
+          </Key>
+          <Property Name="idReserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Funcionario_Pessoa_idPessoa" Type="Int32" Nullable="false" />
+          <Property Name="idcardapio" Type="Int32" Nullable="false" />
+          <Property Name="idTurma" Type="Int32" Nullable="false" />
+          <Property Name="DTCadReserva" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusReserva" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DescricaoReserva" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="cardapio" Relationship="Self.reserva_fk_Reserva_cardapio1" FromRole="reserva" ToRole="cardapio" />
+          <NavigationProperty Name="confirmareserva" Relationship="Self.confirmareserva_fk_ConfirmaReserva_Reserva1" FromRole="reserva" ToRole="confirmareserva" />
+          <NavigationProperty Name="funcionario" Relationship="Self.reserva_fk_Reserva_Funcionario1" FromRole="reserva" ToRole="funcionario" />
+          <NavigationProperty Name="turma" Relationship="Self.reserva_fk_Reserva_Turma1" FromRole="reserva" ToRole="turma" />
+        </EntityType>
+        <EntityType Name="turma">
+          <Key>
+            <PropertyRef Name="idTurma" />
+          </Key>
+          <Property Name="idTurma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoTurma" Type="Int32" Nullable="false" />
+          <Property Name="DescricaoTurma" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sigla" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiasSemana" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="aluno" Relationship="Self.aluno_fk_Aluno_Turma1" FromRole="turma" ToRole="aluno" />
+          <NavigationProperty Name="reserva" Relationship="Self.reserva_fk_Reserva_Turma1" FromRole="turma" ToRole="reserva" />
+        </EntityType>
+        <Association Name="aluno_fk_Aluno_Turma1">
+          <End Role="turma" Type="Self.turma" Multiplicity="1" />
+          <End Role="aluno" Type="Self.aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="turma">
+              <PropertyRef Name="idTurma" />
+            </Principal>
+            <Dependent Role="aluno">
+              <PropertyRef Name="idTurma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aluno_fk_table1_Pessoa1">
+          <End Role="pessoa" Type="Self.pessoa" Multiplicity="1" />
+          <End Role="aluno" Type="Self.aluno" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pessoa">
+              <PropertyRef Name="idPessoa" />
+            </Principal>
+            <Dependent Role="aluno">
+              <PropertyRef Name="Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="confirmareserva_fk_ConfirmaReserva_Aluno1">
+          <End Role="aluno" Type="Self.aluno" Multiplicity="1" />
+          <End Role="confirmareserva" Type="Self.confirmareserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aluno">
+              <PropertyRef Name="Pessoa_idPessoa" />
+            </Principal>
+            <Dependent Role="confirmareserva">
+              <PropertyRef Name="Aluno_Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="avaliacao_fk_Avaliacao_ConfirmaReserva1">
+          <End Role="confirmareserva" Type="Self.confirmareserva" Multiplicity="1" />
+          <End Role="avaliacao" Type="Self.avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="confirmareserva">
+              <PropertyRef Name="idConfirmaReserva" />
+              <PropertyRef Name="Aluno_Pessoa_idPessoa" />
+            </Principal>
+            <Dependent Role="avaliacao">
+              <PropertyRef Name="ConfirmaReserva_idConfirmaReserva" />
+              <PropertyRef Name="ConfirmaReserva_Aluno_Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_fk_Reserva_cardapio1">
+          <End Role="cardapio" Type="Self.cardapio" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cardapio">
+              <PropertyRef Name="idCardapio" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="idcardapio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="funcionario_fk_Funcionario_cargo1">
+          <End Role="cargo" Type="Self.cargo" Multiplicity="1" />
+          <End Role="funcionario" Type="Self.funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargo">
+              <PropertyRef Name="idCargo" />
+            </Principal>
+            <Dependent Role="funcionario">
+              <PropertyRef Name="idCargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="confirmareserva_fk_ConfirmaReserva_Reserva1">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1" />
+          <End Role="confirmareserva" Type="Self.confirmareserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="idReserva" />
+            </Principal>
+            <Dependent Role="confirmareserva">
+              <PropertyRef Name="idReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="funcionario_fk_funcionario_Pessoa">
+          <End Role="pessoa" Type="Self.pessoa" Multiplicity="1" />
+          <End Role="funcionario" Type="Self.funcionario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pessoa">
+              <PropertyRef Name="idPessoa" />
+            </Principal>
+            <Dependent Role="funcionario">
+              <PropertyRef Name="Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_fk_Reserva_Funcionario1">
+          <End Role="funcionario" Type="Self.funcionario" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcionario">
+              <PropertyRef Name="Pessoa_idPessoa" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="Funcionario_Pessoa_idPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_fk_Reserva_Turma1">
+          <End Role="turma" Type="Self.turma" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="turma">
+              <PropertyRef Name="idTurma" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="idTurma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="modelagemtcc_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aluno" EntityType="Self.aluno" />
+          <EntitySet Name="avaliacao" EntityType="Self.avaliacao" />
+          <EntitySet Name="cardapio" EntityType="Self.cardapio" />
+          <EntitySet Name="cargo" EntityType="Self.cargo" />
+          <EntitySet Name="confirmareserva" EntityType="Self.confirmareserva" />
+          <EntitySet Name="funcionario" EntityType="Self.funcionario" />
+          <EntitySet Name="pessoa" EntityType="Self.pessoa" />
+          <EntitySet Name="reserva" EntityType="Self.reserva" />
+          <EntitySet Name="turma" EntityType="Self.turma" />
+          <AssociationSet Name="aluno_fk_Aluno_Turma1" Association="Self.aluno_fk_Aluno_Turma1">
+            <End Role="turma" EntitySet="turma" />
+            <End Role="aluno" EntitySet="aluno" />
+          </AssociationSet>
+          <AssociationSet Name="aluno_fk_table1_Pessoa1" Association="Self.aluno_fk_table1_Pessoa1">
+            <End Role="pessoa" EntitySet="pessoa" />
+            <End Role="aluno" EntitySet="aluno" />
+          </AssociationSet>
+          <AssociationSet Name="confirmareserva_fk_ConfirmaReserva_Aluno1" Association="Self.confirmareserva_fk_ConfirmaReserva_Aluno1">
+            <End Role="aluno" EntitySet="aluno" />
+            <End Role="confirmareserva" EntitySet="confirmareserva" />
+          </AssociationSet>
+          <AssociationSet Name="avaliacao_fk_Avaliacao_ConfirmaReserva1" Association="Self.avaliacao_fk_Avaliacao_ConfirmaReserva1">
+            <End Role="confirmareserva" EntitySet="confirmareserva" />
+            <End Role="avaliacao" EntitySet="avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_fk_Reserva_cardapio1" Association="Self.reserva_fk_Reserva_cardapio1">
+            <End Role="cardapio" EntitySet="cardapio" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="funcionario_fk_Funcionario_cargo1" Association="Self.funcionario_fk_Funcionario_cargo1">
+            <End Role="cargo" EntitySet="cargo" />
+            <End Role="funcionario" EntitySet="funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="confirmareserva_fk_ConfirmaReserva_Reserva1" Association="Self.confirmareserva_fk_ConfirmaReserva_Reserva1">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="confirmareserva" EntitySet="confirmareserva" />
+          </AssociationSet>
+          <AssociationSet Name="funcionario_fk_funcionario_Pessoa" Association="Self.funcionario_fk_funcionario_Pessoa">
+            <End Role="pessoa" EntitySet="pessoa" />
+            <End Role="funcionario" EntitySet="funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_fk_Reserva_Funcionario1" Association="Self.reserva_fk_Reserva_Funcionario1">
+            <End Role="funcionario" EntitySet="funcionario" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_fk_Reserva_Turma1" Association="Self.reserva_fk_Reserva_Turma1">
+            <End Role="turma" EntitySet="turma" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_SOPAModelStoreContainer" CdmEntityContainer="modelagemtcc_Entities">
+          <EntitySetMapping Name="aluno">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.aluno">
+              <MappingFragment StoreEntitySet="aluno">
+                <ScalarProperty Name="Pessoa_idPessoa" ColumnName="Pessoa_idPessoa" />
+                <ScalarProperty Name="idTurma" ColumnName="idTurma" />
+                <ScalarProperty Name="MatSESI" ColumnName="MatSESI" />
+                <ScalarProperty Name="MatSENAI" ColumnName="MatSENAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="avaliacao">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.avaliacao">
+              <MappingFragment StoreEntitySet="avaliacao">
+                <ScalarProperty Name="idAvaliacao" ColumnName="idAvaliacao" />
+                <ScalarProperty Name="ConfirmaReserva_Aluno_Pessoa_idPessoa" ColumnName="ConfirmaReserva_Aluno_Pessoa_idPessoa" />
+                <ScalarProperty Name="ConfirmaReserva_idConfirmaReserva" ColumnName="ConfirmaReserva_idConfirmaReserva" />
+                <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cardapio">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.cardapio">
+              <MappingFragment StoreEntitySet="cardapio">
+                <ScalarProperty Name="idCardapio" ColumnName="idCardapio" />
+                <ScalarProperty Name="Porcao1" ColumnName="Porcao1" />
+                <ScalarProperty Name="Porcao2" ColumnName="Porcao2" />
+                <ScalarProperty Name="Acompanhamento1" ColumnName="Acompanhamento1" />
+                <ScalarProperty Name="Acompanhamento2" ColumnName="Acompanhamento2" />
+                <ScalarProperty Name="Acompanhamento3" ColumnName="Acompanhamento3" />
+                <ScalarProperty Name="Suco" ColumnName="Suco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cargo">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.cargo">
+              <MappingFragment StoreEntitySet="cargo">
+                <ScalarProperty Name="idCargo" ColumnName="idCargo" />
+                <ScalarProperty Name="DescricaoCargo" ColumnName="DescricaoCargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="confirmareserva">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.confirmareserva">
+              <MappingFragment StoreEntitySet="confirmareserva">
+                <ScalarProperty Name="idConfirmaReserva" ColumnName="idConfirmaReserva" />
+                <ScalarProperty Name="Aluno_Pessoa_idPessoa" ColumnName="Aluno_Pessoa_idPessoa" />
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="DTConfReserva" ColumnName="DTConfReserva" />
+                <ScalarProperty Name="ConfPresente" ColumnName="ConfPresente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="funcionario">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.funcionario">
+              <MappingFragment StoreEntitySet="funcionario">
+                <ScalarProperty Name="Pessoa_idPessoa" ColumnName="Pessoa_idPessoa" />
+                <ScalarProperty Name="idCargo" ColumnName="idCargo" />
+                <ScalarProperty Name="Instituicao" ColumnName="Instituicao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pessoa">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.pessoa">
+              <MappingFragment StoreEntitySet="pessoa">
+                <ScalarProperty Name="idPessoa" ColumnName="idPessoa" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Sobrenome" ColumnName="Sobrenome" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="TipoPessoa" ColumnName="TipoPessoa" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reserva">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.reserva">
+              <MappingFragment StoreEntitySet="reserva">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="Funcionario_Pessoa_idPessoa" ColumnName="Funcionario_Pessoa_idPessoa" />
+                <ScalarProperty Name="idcardapio" ColumnName="idcardapio" />
+                <ScalarProperty Name="idTurma" ColumnName="idTurma" />
+                <ScalarProperty Name="DTCadReserva" ColumnName="DTCadReserva" />
+                <ScalarProperty Name="StatusReserva" ColumnName="StatusReserva" />
+                <ScalarProperty Name="DescricaoReserva" ColumnName="DescricaoReserva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="turma">
+            <EntityTypeMapping TypeName="BD_S.O.P.A.Model.turma">
+              <MappingFragment StoreEntitySet="turma">
+                <ScalarProperty Name="idTurma" ColumnName="idTurma" />
+                <ScalarProperty Name="CodigoTurma" ColumnName="CodigoTurma" />
+                <ScalarProperty Name="DescricaoTurma" ColumnName="DescricaoTurma" />
+                <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+                <ScalarProperty Name="DiasSemana" ColumnName="DiasSemana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

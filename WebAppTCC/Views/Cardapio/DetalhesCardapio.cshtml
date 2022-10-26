@@ -1,0 +1,55 @@
+﻿@model WebAppTCC.Models.reserva
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Detalhes Cardápio</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+
+
+
+<div id="paginadetalhereserva">
+    <div id="divreserva">
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Primeira Porção</h2>
+                <p> @Model.cardapio.Porcao1</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Segunda Porção</h2>
+                <p> @Model.cardapio.Porcao2</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Primeiro Acompanhamento</h2>
+                <p> @Model.cardapio.Acompanhamento1</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Segundo Acompanhamento</h2>
+                <p> @Model.cardapio.Acompanhamento2</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Terceiro Acompanhamento</h2>
+                <p> @Model.cardapio.Acompanhamento3</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Suco do Dia</h2>
+                <p> @Model.cardapio.Suco</p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<a href="/Reserva/DetalhesReserva?id=@Model.idReserva" class="btn btn-info"> VOLTAR</a>

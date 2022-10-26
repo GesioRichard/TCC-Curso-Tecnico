@@ -1,0 +1,110 @@
+﻿@model IEnumerable<WebAppTCC.Models.cargo>
+
+@{
+    ViewBag.Title = "Cadastrar Funcionario";
+}
+
+<br />
+<div id="pagina">
+
+
+
+    <br />
+    <div id="containercadastro">
+
+
+
+
+
+        <div id="divcadastro">
+
+            <form name="form1" method="post" action="/Aluno/CadastroAluno">
+                <div class="form-group">
+                    <label for="nome">Primeiro Nome</label>
+                    <input type="text" class="form-control" aria-describedby="emailHelp" name="nome" id="nome" placeholder="Nome" maxlength="15" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" maxlength="30" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf"> CPF </label>
+                    <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF" maxlength="11" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="email" name="email" id="email" placeholder="Informe seu Email" maxlength="60" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">TELEFONE</label>
+                    <input type="text" name="telefone" id="telefone" placeholder="Informe seu Telefone" maxlength="11" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">SENHA</label>
+                    <input type="password" name="senha" id="senha" placeholder="Informe sua senha" maxlength="6" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+
+
+
+                <div class="col-md-3 mb-3" id="cardinsituição1">
+                    <label for="instituição">Instituição:  </label>
+                    <input type="radio" name="instituicao" id="escolaSesi" value="sesi" required /> SESI
+                    <br />
+                    <input type="radio" name="instituicao" id="escolaSenai" value="senai" required /> SENAI
+                </div>
+
+                <div class="col-md-6 mb-3" id="cardinsituição2">
+                    <label for="cargo">CARGO</label>
+                    <br />
+                    <select name="cargo">
+                        @foreach (var car in Model)
+                        {
+                            <option value="@car.idCargo"> @car.DescricaoCargo </option>
+                        }
+                    </select>
+                </div>
+
+
+
+            <br />
+
+                    <button type="submit" class="btn btn-primary btn-sm"> Enviar</button>
+
+
+
+             
+
+                <div id="atributosformularioinvisivel" class="sr-only">
+
+                    <div class="form-check">
+                        <label for="tipo">Tipo de Cadastro</label>
+                        <br />
+                        <input type="radio" class="tipo" name="tipo" id="tipoA" value="A" required /> Aluno <br />
+                        <input type="radio" class="tipo" name="tipo" id="tipoF" value="F" checked required /> Funcionário
+                    </div>
+                    <div class="form-group">
+                        <label for="status">STATUS</label> <br />
+                        <input type="radio" name="status" id="statusA" value="A" checked required /> Ativo <br />
+                        <input type="radio" name="status" id="statusI" value="I" required /> Inativo
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+
+        <br>
+
+    </div>
+    <br />
+</div>
+
+
+<a href="/Funcionario/IndexFuncionario"> <button type="button" class="btn btn-primary btn-sm">VOLTAR</button></a>

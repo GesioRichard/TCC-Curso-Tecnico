@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<div id="pagina" class="fundocontainer">
+    <br />
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-0">
+                    <br />
+
+                    <form name="login-form1" action="/Home/Login" method="post" id="formcadastro">
+                        <div class="form-group">
+                            <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF" required maxlength="11" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="senha" id="senha" placeholder="Informe sua Senha" maxlength="6" required>
+
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-primary ms-1">Entrar</button>
+                            <span>@ViewBag.ErrorLogin</span>
+                            <a href="/Aluno/CadastroAluno" class="btn btn-primary btn-sm" id="btncadastro">cadastrar </a>
+                        </div>
+                      
+            </form>
+
+        </div>
+            </div>
+
+        </div>
+
+   
+
+
+
+
+</div> 

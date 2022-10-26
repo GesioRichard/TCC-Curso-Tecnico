@@ -1,0 +1,549 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Pagina</title>
+
+
+    <!-- CSS only
+    / <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+         -->
+
+
+    <meta name="viewport" content="width=device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <style>
+        body {
+            background-color: darkslategrey;
+            color: black;
+            font-family: Courier New, monospace;
+            margin-top: 2%;
+            font-size: 20px;
+        }
+
+        h1 {
+            background-color: rgb(242,240,235);
+            color: darkslategrey;
+        }
+
+        .divcabecalho {
+            display: inline-flex;
+            width: 100%;
+            align-items: center;
+        }
+
+        .cabelhoconteudo {
+            padding-top: 1.8%;
+            padding-left: 1%;
+            min-width: 400px;
+            height: 120px;
+            background-color: rgb(77 44 12);
+            color: white;
+            box-shadow: 0 0 1em black;
+        }
+
+        .cabelhoconteudofuncionario {
+            margin-left: -11%;
+            padding-top: 1.8%;
+            padding-left: 1%;
+            min-width: 400px;
+            height: 120px;
+            background-color: rgb(77 44 12);
+            color: white;
+            box-shadow: 0 0 1em black;
+        }
+
+        .arrow-right {
+            width: 0;
+            height: 0;
+            border-top: 60px solid transparent;
+            border-bottom: 60px solid transparent;
+            border-left: 60px solid rgb(77 44 12);
+        }
+
+        #pagina {
+            background-color: lightgray;
+            min-height: 550px;
+            height: auto;
+            box-shadow: 0 0 1em black;
+            margin: 0;
+            margin-top: 1%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .containercardapio {
+            width: 720px;
+            height: auto;
+            margin: auto;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            font-size: 19px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #divconteinercardapio {
+            width: 340px;
+            text-align: right;
+            padding-right: 2%;
+            margin-right: 20px;
+            background-color: rgb(47,79,79, 0.5);
+        }
+
+        #divconteinercardapio2 {
+            width: 340px;
+            padding-left: 2%;
+            text-align: left;
+            background-color: rgb(47,79,79, 0.5);
+        }
+
+        #container {
+            /*gap: 24em;   overflow: hidden;*/
+            display: flex;
+            height: 600px;
+        }
+
+        #containercadastro {
+            display: flex;
+            vertical-align: middle;
+            width: 100%;
+            margin: 0;
+            align-items: center;
+        }
+
+        #divcadastro {
+            padding: 3%;
+            margin: 0 auto;
+            box-shadow: 0 0 1em darkslategrey;
+            color: black;
+            width: 500px;
+            height: 100%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            background-color: white;
+        }
+       
+        #cardinsituição1 {
+            border-color: black;
+            width: 215px;
+            height: 100px;
+            box-shadow: 0 0 1px black;
+            text-align: left;
+            align-items: center;
+           
+        }
+
+        #cardinsituição2 {
+            border-color: black;
+            width: 215px;
+            height: 100px;
+            box-shadow: 0 0 1px black;
+            text-align: center;
+            align-items: center;
+        }
+
+        #formcadastro {
+            display: block;
+            background-color: rgb(0, 0,0, 0.2);
+            padding-top: 5%;
+            min-width: 300px;
+            color: black;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .fundocontainer {
+            background-color: white;
+        }
+
+        .conteudo {
+            background-color: rgb(176, 224, 230);
+            align-items: center;
+            text-align: center;
+        }
+
+        hr {
+            border-block-color: darkslategrey;
+        }
+
+        .paragrafo {
+            background-color: ghostwhite;
+            width: 20em;
+        }
+        /* tela de funcionario e usuario*/
+        .mensagembemvindo {
+            border-radius
+        }
+
+        #containercards {
+            width: 100%;
+            padding: 2%;
+            font-size: 20px;
+            display: flex;
+            gap: 1em;
+            margin: 0;
+        }
+
+        #containercards2 {
+            width: 100%;
+            padding: 2%;
+            font-size: 20px;
+            display: flex;
+            gap: 1em;
+            margin: 0;
+            margin-left: 11%;
+        }
+
+        .paginafuncionariousuario {
+            background-color: lightgray;
+            max-width: 1100px;
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            box-shadow: inset 0 0 5px black, 0 0 1em black;
+            display: flex;
+            margin: 0;
+            align-items: center;
+            margin-top: 1%;
+        }
+
+        .paginafuncionariousuario5telas {
+            background-color: lightgray;
+            min-width: 1400px;
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            box-shadow: inset 0 0 5px black, 0 0 1em black;
+            display: flex;
+            margin: 0;
+            margin-left: -11%;
+            align-items: center;
+            margin-top: 1%;
+        }
+
+        .caixacard {
+            background-color: white;
+            position: relative;
+            min-width: 150px;
+            min-height: 150px;
+            box-shadow: inset 0 0 5px black, 0 0 1em black;
+            cursor: pointer;
+        }
+
+            .caixacard::after, .caixacard:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                box-shadow: inset 0 0 3em darkslategrey, 0 0 1em rgb(77 44 12);
+                transition: transform .4s ease-in-out;
+            }
+
+            .caixacard:before {
+                border-left: 2px solid white;
+                border-right: 2px solid white;
+                box-shadow: 0 0 1em rgb(0,0,0, 0.5);
+                transform: scaleY(0);
+            }
+
+            .caixacard:after {
+                border-bottom: 2px solid white;
+                border-top: 2px solid white;
+                transform: scaleX(0);
+            }
+
+            .caixacard:hover::before {
+                transform: scaleY(1);
+            }
+
+            .caixacard:hover:after {
+                transform: scaleX(1);
+            }
+
+        .textocard {
+            padding-left: 2%;
+            font-size: 22px;
+        }
+
+        .thumb1 {
+            background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV9M_bVbDRLw0aS-bkhyHw4yVeMERRGmMi-A&usqp=CAU) 50% 50% no-repeat; /* 50% 50% centers image in div */
+            width: 250px;
+            height: 250px;
+        }
+
+        .thumb2 {
+            background: url(https://images2.alphacoders.com/261/thumb-1920-26102.jpg 50% 50% no-repeat; /* 50% 50% centers image in div */
+            width: 250px;
+            height: 250px;
+        }
+
+        .thumb3 {
+            background: url(https://th.bing.com/th/id/OIP.RS_nbVQbARc972PocMxTAQDYEg?pid=ImgDet&w=480&h=640&rs=1) 50% 50% no-repeat; /* 50% 50% centers image in div */
+            width: 250px;
+            height: 250px;
+        }
+
+        .thumb1 a {
+            display: block;
+            width: 250px;
+            height: 250px;
+        }
+
+            .thumb1 a:hover {
+                YOUR HOVER STYLES HERE
+            }
+        /* RESERVA*/
+        #paginareserva {
+            background-color: lightgray;
+            width: 1100px;
+            max-width: 1300px;
+            height: auto;
+            min-height: 535px;
+            box-shadow: inset 0 0 5px black, 0 0 1em black;
+            display: flex;
+            margin: 0;
+            margin-top: 1%;
+            align-items: center;
+        }
+
+
+        #divreserva {
+            padding: 3%;
+            margin: 2%;
+            box-shadow: 0 0 1em black;
+            width: 1040px;
+            min-height: 500px;
+            width: auto;
+            max-width: 1300px;
+            background-color: whitesmoke;
+            display: inline-flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #divperfilfil {
+            padding: 3%;
+            margin: 0;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            margin-left: 22%;
+            box-shadow: 0 0 1em black;
+            width: 650px;
+            min-height: 500px;
+            background-color: whitesmoke;
+            display: inline-flex;
+            padding-left: 17%;
+            text-align: left;
+        }
+
+        .conteudoreserva {
+            text-align: left;
+            background-color: lightgray;
+            overflow: auto;
+            max-width: 100px;
+        }
+
+        .threserva {
+            min-width: 175px;
+            width: auto;
+        }
+
+        #espacinho {
+            padding-left: 5%;
+            background-color: lightgray;
+            overflow: auto;
+        }
+
+        #deixartabletransparente {
+            background-color: rgb(0, 0, 0, 0.0)
+        }
+
+        #divdetalhereservabox {
+            background-color: rgb(0, 0, 0, 0.0);
+            font-size: 18px;
+        }
+
+        .botoesreserva {
+            justify-content: center;
+        }
+
+
+        #botaoreserva {
+            width: 100%;
+        }
+
+        #selectcardapio {
+            max-width: 600px;
+        }
+
+
+        #divreservahistorico {
+            margin-top: 5%;
+            margin: 0 auto;
+            box-shadow: inset 0 0 1em white, 0 0 1em black;
+            width: 500px;
+            height: 300px;
+            background-color: rgb(242,240,235,0.6);
+            display: block;
+            padding: 1%;
+            overflow-x: hidden;
+        }
+
+        /*avaliacao*/
+        #divavaliar {
+            padding: 3%;
+            margin: 0 auto;
+            box-shadow: inset 0 0 1em white, 0 0 1em black;
+            width: 500px;
+            height: 300px;
+            background-color: rgb(242,240,235,0.6);
+        }
+
+        #inputavaliacao {
+            width: 80%;
+        }
+
+        body {
+            text-align: center;
+            padding-top: 50px
+        }
+
+        .estrelas input[type=radio] {
+            display: none;
+        }
+
+        .estrelas label i.fa {
+            font-size: 2.5em
+        }
+
+            .estrelas label i.fa:before {
+                content: '\f005';
+                color: #FC0;
+            }
+
+        .estrelas input[type=radio]:checked ~ label i.fa:before {
+            color: #CCC;
+        }
+        /* turmas*/
+        #listaturmas {
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+            background-color: red;
+        }
+
+        .cardturma {
+            background-image: url(https://th.bing.com/th/id/R.a058c08bbe236c6d73c23bd592a9a4ba?rik=ov7zX%2fvO0HHoow&pid=ImgRaw&r=0);
+            padding: 8%;
+            width: 20px;
+            height: auto;
+            border-color: green;
+        }
+        /* registrar reserva parte do funcionario*/
+        #divreservafuncionario {
+            padding: 5%;
+            margin: 0 auto;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            box-shadow: inset 0 0 1em white, 0 0 1em black;
+            width: 800px;
+            min-height: 400px;
+            background-color: rgb(242,240,235,0.6);
+            display: inline-flex;
+            padding-left: 15%;
+            text-align: left;
+        }
+
+        #divlistaregistrarreserva {
+            width: 600px;
+            height: 360px;
+            display: inline-flex;
+            overflow: auto;
+            padding: 0;
+        }
+
+        #listaregistrarreserva {
+            list-style-type: none;
+        }
+
+        .botasimnao {
+            width: 30px;
+            height: 20px;
+            background-color: white;
+            margin: 0;
+            align-items: center;
+            border-color: black;
+            border-radius: 60%;
+        }
+        /* Lista reserva*/
+        a {
+            box-shadow: inset 0 0 4px white, 0 0 4px white;
+            background-color: rgb(47,79,79, 0.5);
+            border-radius: 20%;
+            color: darkslategrey;
+        }
+
+        #rodapcaixinhas {
+            padding-left: 2%;
+            max-width: 100px;
+        }
+
+        #navbrcorna {
+            width: 300px;
+        }
+
+        table {
+            background-color: rgb(242,240,235);
+        }
+
+        #divdetalhereservassss {
+            color: black;
+            box-shadow: 0 0 1em black;
+        }
+
+        #paginadetalhereserva {
+            background-color: lightgray;
+            max-width: 1100px;
+            width: 100%;
+            height: auto;
+            min-height: 700px;
+            box-shadow: inset 0 0 5px black, 0 0 1em black;
+            display: flex;
+            margin: 0;
+            margin-top: 1%;
+            align-items: center;
+        }
+
+        .boxreservascaixas {
+            font-size: 20px;
+            border-style: dotted;
+            border-color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - senai 2022</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

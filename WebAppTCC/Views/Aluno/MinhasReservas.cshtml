@@ -1,0 +1,68 @@
+﻿@model WebAppTCC.Classes.AlunoReserva
+
+@{
+    ViewBag.Title = "Minhas Reservas";
+}
+
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Minhas Reservas</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divreserva">
+
+
+        <table class="table" id="deixartabletransparente">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Data da abertura da Reserva</th>
+                    <th scope="col">Status da Reserva</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var reserA in Model.confirRe)
+                {
+                    var confirmou = false;
+                <tr>
+                    <td>@reserA.reserva.DescricaoReserva</td>
+                    <td>@reserA.reserva.DTCadReserva</td>
+                    <td>@reserA.reserva.StatusReserva</td>
+                    <td>
+                        @foreach (var aluLista in Model.listaAvaAluno)
+                        {
+                            if ((Model.avaAluno != null) && (aluLista.ConfirmaReserva_Aluno_Pessoa_idPessoa == reserA.Aluno_Pessoa_idPessoa) && (reserA.idConfirmaReserva == aluLista.ConfirmaReserva_idConfirmaReserva))
+                            {
+                                confirmou = true;
+
+                                break;
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    @if (confirmou == true){
+                        <p> Reserva ja Avaliada</p>
+                    }else{
+                    <a href="/Cardapio/AvaliarCardapio?id=@reserA.idConfirmaReserva" class="btn btn-info"> Avaliar Cardápio</a>
+                    }
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<a href="/Aluno/IndexAluno" class="btn btn-info"> VOLTAR </a>

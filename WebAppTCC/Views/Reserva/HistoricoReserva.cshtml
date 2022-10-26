@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebAppTCC.Models.reserva>
+
+@{
+    ViewBag.Title = "Historico Reserva";
+}
+
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Histórico de Reserva</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+
+<br />
+
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divreserva">
+
+        <table class="table" id="deixartabletransparente">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Funcionário que Abriu</th>
+                    <th scope="col">Turma da Reserva</th>
+                    <th scope="col">Data da abertura da Reserva</th>
+                    <th scope="col">Status da Reserva</th>
+                    <th scope="col">Alunos que Confirmaram Presença</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reser in Model)
+                {
+
+                    <tr>
+                        <td>@reser.DescricaoReserva</td>
+                        <td>@reser.funcionario.pessoa.Nome</td>
+                        <td>@reser.turma.DescricaoTurma</td>
+                        <td>@reser.DTCadReserva</td>
+                        <td>@reser.StatusReserva</td>
+                        <td><a href="/Reserva/AlunosReserva?id=@reser.idReserva" class="btn btn-info">Ver Alunos</a></td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<br />
+<a href="/Funcionario/IndexFuncionario" class="btn btn-info"> VOLTAR </a>

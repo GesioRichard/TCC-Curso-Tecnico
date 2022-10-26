@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2e126aa9d4bd47d6bbfaf2b0ac5af707" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.aluno" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.avaliacao" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.cardapio" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.cargo" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.confirmareserva" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.funcionario" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.pessoa" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.reserva" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_S.O.P.A.Model.turma" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.aluno_fk_Aluno_Turma1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.aluno_fk_table1_Pessoa1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.confirmareserva_fk_ConfirmaReserva_Aluno1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.avaliacao_fk_Avaliacao_ConfirmaReserva1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.reserva_fk_Reserva_cardapio1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.funcionario_fk_Funcionario_cargo1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.confirmareserva_fk_ConfirmaReserva_Reserva1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.funcionario_fk_funcionario_Pessoa" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.reserva_fk_Reserva_Funcionario1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_S.O.P.A.Model.reserva_fk_Reserva_Turma1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

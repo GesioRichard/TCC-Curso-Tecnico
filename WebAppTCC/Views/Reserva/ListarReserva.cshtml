@@ -1,0 +1,87 @@
+﻿@model WebAppTCC.Classes.FuncionarioReserva
+
+@{
+    ViewBag.Title = "Listar Reserva";
+}
+
+
+
+
+
+
+
+
+<div class="divcabecalho">
+
+    <div class="cabelhoconteudo">
+        <h2>Lista de Reservas abertas por @Model.funcionarioDados.pessoa.Nome</h2>
+    </div>
+    <div class="arrow-right"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="paginareserva">
+    <br />
+    <div id="divreserva">
+
+
+        <table class="table" id="deixartabletransparente">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Data da abertura da Reserva</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var funcReser in Model.reservas)
+                {
+                    if ((funcReser.StatusReserva == "A") && (Model.funcionarioDados.Pessoa_idPessoa == funcReser.Funcionario_Pessoa_idPessoa))
+                    {
+                        <tr>
+                            <td>@funcReser.DescricaoReserva</td>
+                            <td>@funcReser.DTCadReserva</td>
+                            <td>
+                                <a href="/Reserva/DetalhesReserva?id=@funcReser.idReserva" class="btn btn-info"> DETALHE</a>
+                                <a href="/Reserva/FecharReserva?id=@funcReser.idReserva" class="btn btn-info"> FINALIZAR RESERVA</a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+
+        </table>
+
+
+
+
+
+
+
+    </div>
+</div>
+<a href="/Reserva/CadastroReserva" class="btn btn-info"> Cadastrar Reserva</a>
+<br />
+<a href="/Funcionario/IndexFuncionario" class="btn btn-info"> VOLTAR </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
